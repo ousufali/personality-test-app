@@ -1,7 +1,12 @@
 :root {
   --app-background-color: #f1f1f1;
+  --app-punch-color: #e96886;
+  --app-cornflower:  #6693E5;
 }
-
+/* "cornflower" */
 html {
   background-color: var(--app-background-color);
+  /* background-color: var(--app-cornflower); */
+  /* background-color: var(--app-punch-color); */
+
 }
