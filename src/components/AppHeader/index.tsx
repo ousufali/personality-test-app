@@ -14,9 +14,9 @@ const AppHeader: React.FC = ({ }) => {
                 src={logo}
                 alt="IMAGE"
             />
-            <h3>
+            <span className='app-title'>
                 Personality Test
-            </h3>
+            </span>
         </div>
     );
 };

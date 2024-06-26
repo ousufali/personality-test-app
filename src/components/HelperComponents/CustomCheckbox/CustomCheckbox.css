@@ -1,0 +1,50 @@
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    /* cursor: pointer; */
+    user-select: none;
+
+    justify-content: space-between;
+    /* border: 1px solid var(--app-olive); */
+
+}
+
+.checkmark {
+    width: 15px;
+    height: 15px;
+    border: 1px solid var(--app-cornflower);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    transition: background-color 0.3s;
+
+}
+
+.checkmark span {
+    font-size: 22px;
+}
+
+
+.checked .checkmark {
+    /* background-color: var(--app-cornflower); */
+}
+
+
+/* .consignee-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 1vh;
+} */
+
+@media screen and (max-width: 768px) {
+    .custom-checkbox {
+        margin-left: 0px !important;
+    }
+
+    /* .consignee-info {
+        gap: 10px;
+    } */
+}

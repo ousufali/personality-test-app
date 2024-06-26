@@ -4,7 +4,7 @@
 
     gap: 20px;
 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
 }
 
 .header_logo_image {
@@ -17,5 +17,11 @@
 }
 
 .header-div h3{
+    color: var(--app-cornflower);
+}
+
+.app-title{
+    font-size: 1.5rem;
+    font-weight: 700;
     color: var(--app-cornflower);
 }
