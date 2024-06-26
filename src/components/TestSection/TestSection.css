@@ -1,0 +1,15 @@
+.test-section {
+    padding: 2px;
+}
+
+.test-section-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    height: 30px;
+    margin-top: 18px;
+    background-color: lightgray;
+    
+    border-radius: 2px;
+}
