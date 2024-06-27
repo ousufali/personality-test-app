@@ -33,6 +33,7 @@
     padding: 4px;
     align-items: center;
     gap: 10px;
+    user-select: none;
 }
 
 .question-card:hover{

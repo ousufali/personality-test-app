@@ -1,50 +1,66 @@
-.custom-checkbox {
-    display: flex;
-    align-items: center;
-    /* cursor: pointer; */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 45px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
 
-    justify-content: space-between;
-    /* border: 1px solid var(--app-olive); */
+    /* border: 1px solid var(--app-cornflower); */
+}
 
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
 }
 
 .checkmark {
-    width: 15px;
-    height: 15px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    /* background-color: #eee; */
+    border-radius: 50%;
+
+    /* border: 1px solid #eaa2b2; */
+    border: 1px solid lightgray;
+}
+
+.container:hover input~.checkmark {
+
     border: 1px solid var(--app-cornflower);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 8px;
-    transition: background-color 0.3s;
 
 }
 
-.checkmark span {
-    font-size: 22px;
+
+.container input:checked~.checkmark {
+    background-color: var(--app-cornflower);
+    border: 1px solid var(--app-cornflower)
 }
 
 
-.checked .checkmark {
-    /* background-color: var(--app-cornflower); */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked~.checkmark:after {
+    display: block;
 }
 
 
-/* .consignee-info {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding-top: 1vh;
-} */
-
-@media screen and (max-width: 768px) {
-    .custom-checkbox {
-        margin-left: 0px !important;
-    }
-
-    /* .consignee-info {
-        gap: 10px;
-    } */
+.container .checkmark:after {
+    top: 7px;
+    left: 7px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: white;
 }

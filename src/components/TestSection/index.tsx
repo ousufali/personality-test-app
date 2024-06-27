@@ -1,6 +1,8 @@
 import './TestSection.css';
 import React from 'react';
 
+import CustomCheckbox from '../HelperComponents/CustomCheckbox';
+
 interface TestSectionProps {
 }
 
@@ -17,34 +19,25 @@ const TestSection: React.FC<TestSectionProps> = ({ }) => {
 
 
             {/* <span className='test-section-header'>Response Sheet</span> */}
-            <span className="heading-name">Response Sheet</span>
+            <div className='response-sheet-section'>
+                <span className="heading-name">Response Sheet</span>
 
-            <span className='test-section-header'>You’re having an animated discussion with a colleague regarding a project that you’re in charge of. You:</span>
+                <span className='test-section-question'>You’re having an animated discussion with a colleague regarding a project that you’re in charge of. You:</span>
 
 
-            <div className='test-section-question-options'>
-                <div className='test-section-question-option'>
-                    <input type='radio' name='question-1' value='0' style={{
-                        width: '20px',
-                        height: '20px',
-                        marginRight: '10px',
-                        // border: '1px solid red',
-                        color: 'red'
-                    }} />
-                    <span>Don’t dare to interrupt them</span>
+                <div className='test-section-question-options'>
+                    <CustomCheckbox questionText='Don’t dare to interrupt them' />
+                    <CustomCheckbox questionText='Think it’s more important to give them some of your time; work can wait' />
+                    <CustomCheckbox questionText='Listen, but with only half an ear' />
+                    <CustomCheckbox questionText='Interrupt and explain that you are really busy at the moment' />
+
                 </div>
-                <div className='test-section-question-option'>
-                    <input type='radio' name='question-1' value='1' />
-                    <span>Think it’s more important to give them some of your time; work can wait</span>
-                </div>
-                <div className='test-section-question-option'>
-                    <input type='radio' name='question-1' value='2' />
-                    <span>Listen, but with only half an ear</span>
-                </div>
-                <div className='test-section-question-option'>
-                    <input type='radio' name='question-1' value='3' />
-                    <span>Interrupt and explain that you are really busy at the moment</span>
-                </div>
+            </div>
+
+            <div className='action-section'>
+                <button id='action-button' className='action-button-previous' >Previous</button>
+                <button id='action-button' className='action-button-next'     >Next</button>
+
             </div>
         </div>
     );

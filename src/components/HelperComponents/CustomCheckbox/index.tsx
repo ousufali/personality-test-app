@@ -2,27 +2,17 @@ import './CustomCheckbox.css';
 import React, { useState } from 'react';
 
 interface CustomCheckboxProps {
+    questionText: string
 }
 
 
-const CustomCheckbox: React.FC<CustomCheckboxProps> = ({  }) => {
-    const [isChecked, setIsChecked] = useState(true);
+const CustomCheckbox: React.FC<CustomCheckboxProps> = ({  questionText}) => {
 
     return (
-        <div >
-            <div className={`custom-checkbox ${isChecked ? 'checked' : ''}`} >
-                <div
-                    className='same-person'
-                    onClick={() => setIsChecked(!isChecked)}
-                >
-
-                    <div className="checkmark" >
-                        {isChecked && <span style={{ color: '#e96886' }}>&#10003; </span>}
-
-                    </div>
-                </div>
-            </div>
-        </div>
+        <label className="container"> {questionText}
+            <input type="radio" name="radio" />
+            <span className="checkmark"></span>
+        </label>
     );
 };
 
