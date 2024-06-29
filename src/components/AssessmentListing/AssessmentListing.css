@@ -1,4 +1,4 @@
-.question-list{
+.question-list {
     display: flex;
     flex-direction: column;
     gap: 7px;
@@ -6,36 +6,49 @@
 }
 
 
-.heading-name{
+.heading-name {
     font-size: 1.5rem;
     font-weight: 500;
     padding-left: 5px;
     color: var(--app-cornflower);
     /* cursor: default; */
-    
+
 }
 
-.question-list-div{
+.question-list-div {
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
-    
+
 
 }
 
-.question-card {
+.assessment-card {
     display: flex;
+    flex-direction: column;
     cursor: pointer;
-    /* border: 1px solid red; */
-    padding: 4px;
-    align-items: center;
+    padding: 10px;
+    align-items: flex-start;
     gap: 10px;
+
+    /* border: 1px solid lightgray; */
 }
 
-.question-card:hover{
+.assessment-card:hover {
     background-color: lightgray;
     /* color: white; */
     border-radius: 4px;
+}
+
+.assessment-title {
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.assessment-description {
+    font-size: 14px;
+    font-weight: 500;
+    color: gray;
 }

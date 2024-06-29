@@ -1,0 +1,31 @@
+.resultsContainer {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: flex-end; */
+    width: 100%;
+}
+
+.resultsImageContainer {
+    position: relative;
+    text-align: end;
+    
+}
+
+.resultsImage {
+    width:  100%; 
+    height: 70vh;
+    opacity: 0.2; 
+    margin-bottom: -4px;
+    border-radius: 4px;
+}
+
+.resultsText {
+    position: absolute;
+    top: 85%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    color: var(--app-punch-color);
+    /* font-weight: 600; */
+}

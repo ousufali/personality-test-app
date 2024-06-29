@@ -19,7 +19,7 @@
     padding: 22px;
     height: 30px;
     margin-top: 18px;
-    background-color: lightgray;
+    background-color: rgb(230, 228, 228);
     border-radius: 2px;
     font-size: 22px;
     cursor: default;
@@ -38,7 +38,6 @@
     gap: 20px;
 }
 
-
 .action-section {
     display: flex;
     justify-content: flex-end;
@@ -47,29 +46,32 @@
     /* border: 1px solid lightgray; */
 }
 
-#action-button {
+.action-button-start {
     cursor: pointer;
     border-radius: 4px;
-    font-size: 14px;
-    font-weight: 600;
-
+    font-size: 16px;
+    font-weight: 700;
+    background-color: var(--app-cornflower);
+    color: white;
+    padding: 10px 60px;
+    border: none;
+    width: 100px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
 }
 
-#action-button:hover {
+
+.action-button-start:hover {
     background-color: rgb(236, 233, 233);
     border: 1px solid var(--app-cornflower);
     color: var(--app-cornflower);
 }
 
-.action-button-next {
-    padding: 10px 60px;
+.action-button-start {
+    padding: 15px 90px;
     background-color: var(--app-cornflower);
     color: white;
     border: 1px solid var(--app-cornflower);
-}
-
-.action-button-previous {
-    padding: 10px 20px;
-    color: gray;
-    border: 1px solid gray;
+    letter-spacing: 1px;
 }

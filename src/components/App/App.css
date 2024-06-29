@@ -8,28 +8,32 @@
   height: auto;
 }
 
-#AppHeader {
+#Header {
   grid-column: 1 / -1;
   /* border: 1px solid red; */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   border-radius: 2px;
 
 }
 
-#QuestionList {
+#Aside {
   grid-column: 1 / 2;
   grid-row: 2 / 3;
   /* border: 1px solid red; */
   box-shadow: 0 0 2px rgb(176, 176, 176);
   border-radius: 4px;
 
+
 }
 
-#TestSection {
+#Main {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
   /* border: 1px solid red; */
   box-shadow: 0 0 2px rgb(176, 176, 176);
   border-radius: 4px;
+
+  max-width: 99%;
+  min-height: 70vh;
 
 }
