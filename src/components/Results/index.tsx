@@ -1,16 +1,33 @@
 import React, { FC } from 'react';
 import './Results.css'; // Import the CSS file
 
-const Results: FC = () => {
+import { EXTROVERT_BOUNDRY } from '../../utils/constant';
+
+interface ResultsProps {
+    score: number;
+}
+
+const Results: FC<ResultsProps> = ({ score }) => {
     return (
         <div className="resultsContainer">
 
             <div className="resultsImageContainer">
-                {/* <img src="/extrovert.jpg" alt="Image" className="resultsImage" /> */}
+                {
+                    score > EXTROVERT_BOUNDRY ?
+                        <>
+                            <img src="/extrovert.jpg" alt="Image" className="resultsImage" />
+                            <p className='resultsText'>{"You are extrovert".toLocaleUpperCase()}</p>
+                        </>
+                        :
+                        <>
 
-                <img src="/introvert.jpg" alt="Image" className="resultsImage" />
-                <p className="resultsText">{"You are introvert".toLocaleUpperCase()}</p>
-                {/* <p className='resultsText'>{"You are extrovert".toLocaleUpperCase()}</p> */}
+                            <img src="/introvert.jpg" alt="Image" className="resultsImage" />
+                            <p className="resultsText">{"You are introvert".toLocaleUpperCase()}</p>
+                        </>
+                }
+
+
+
             </div>
 
         </div>

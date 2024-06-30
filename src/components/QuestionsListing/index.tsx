@@ -8,9 +8,11 @@ import { Question } from "../../utils/models"
 interface QuestionsListingProps {
     questions: Question[]
     headingName: string
+    selectedQuestion: number
+    updateSelectedQuestion: (selectedQuestion: number) => void
 }
 
-const QuestionsListing: React.FC<QuestionsListingProps> = ({ questions, headingName }) => {
+const QuestionsListing: React.FC<QuestionsListingProps> = ({ questions, headingName, selectedQuestion, updateSelectedQuestion }) => {
 
     return (
         <div className="question-list">
@@ -22,7 +24,8 @@ const QuestionsListing: React.FC<QuestionsListingProps> = ({ questions, headingN
                     questions.map((item, index) =>
                         <div
                             key={index}
-                            className="question-card"
+                            className={selectedQuestion === index ? "question-card-selected" : "question-card"}
+                            onClick={() => updateSelectedQuestion(index)}
 
                         >
                             {

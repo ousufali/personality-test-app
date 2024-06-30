@@ -4,7 +4,7 @@ import config from './config';
 export const getAssessments = async () => {
     var results = []
     try {
-        const response = await axios.get(`${config.BASE_URL}/get/assessments`);
+        const response = await axios.get(`${config.EXAM_API_URI}/get/assessments`);
         if (response.status === 200) {
             results = response.data;
         }
@@ -17,16 +17,16 @@ export const getAssessments = async () => {
 }
 
 
-interface GetQuestionsData {
+interface GetAssessmentQuestions {
     assessmentNumber: number
 }
 
-export const getQuestions = async (data: GetQuestionsData) => {
+export const getAssessmentQuestions = async (data: GetAssessmentQuestions) => {
     var results = []
     try {
-        const response = await axios.post(`${config.BASE_URL}/get/questions`, data);
+        const response = await axios.post(`${config.EXAM_API_URI}/get/questions`, data);
         if (response.status === 200) {
-            results = response.data;
+            results = response.data.map((item: object) => { return { ...item, "isAnswered": false, "selectedOption": -1 } });
         }
         console.log("response: ", response);
     } catch (error) {
@@ -45,7 +45,7 @@ interface GetScoreData {
 export const getScore = async (data: GetScoreData) => {
     var result = undefined
     try {
-        const response = await axios.post(`${config.BASE_URL}/get/score`, data);
+        const response = await axios.post(`${config.EXAM_API_URI}/get/score`, data);
         if (response.status === 200) {
             result = response.data;
         }
