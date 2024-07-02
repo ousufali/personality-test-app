@@ -52,6 +52,7 @@ const AssessmentDescription: React.FC<AssessmentDescriptionProps> = ({ assessmen
                     showLoader === true ? <Loader />
                         : <button
                             id='action-button'
+                            data-testid='start-assessment-button'
                             className='action-button-start'
                             onClick={startTestHandler}
                         >

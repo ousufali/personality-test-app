@@ -97,19 +97,19 @@ const App: React.FC = () => {
 
   return (
 
-    <div id='App'>
+    <div id='App' data-testid='App'>
 
-      <div id='Header'>
+      <div id='Header' data-testid='Header'>
         <AppHeader />
       </div>
 
       <Routes>
         <Route path="/" element={
           <>
-            <div id='Aside'>
+            <div id='Aside' data-testid='Aside'>
               <Assessments assessments={assessments} selectedTest={selectedTest} setSelectedTest={setSelectedTest} />
             </div>
-            <div id='Main'>
+            <div id='Main' data-testid='Main'>
               <AssessmentDescription assessment={assessments[selectedTest]} startTestCallback={startTest} />
             </div>
           </>
@@ -118,10 +118,10 @@ const App: React.FC = () => {
         <Route path="/assessment/:selectedTestId" element={
           <WithQuestionsValidation questions={questions}>
             <>
-              <div id='Aside'>
+              <div id='Aside' data-testid='Aside'>
                 <QuestionsListing questions={questions} headingName='Questions' selectedQuestion={selectedQuestion} updateSelectedQuestion={updateSelectedQuestion} />
               </div>
-              <div id='Main'>
+              <div id='Main' data-testid='Main'>
                 <TestSection selectedQuestion={selectedQuestion} questions={questions} updateQuestionAnswer={updateQuestionAnswer} changeSelectedQuestion={changeSelectedQuestion} calculateScore={calculateScore} />
               </div>
             </>
@@ -131,11 +131,11 @@ const App: React.FC = () => {
         <Route path="assessments/results" element={
           <WithQuestionsValidation questions={questions}>
             <>
-              <div id='Aside' onClick={() => navigate("/")}>
+              <div id='Aside' data-testid='Aside' onClick={() => navigate("/")}>
                 <Assessments assessments={assessments} selectedTest={selectedTest} setSelectedTest={setSelectedTest} />
               </div>
 
-              <div id='Main'>
+              <div id='Main' data-testid='Main'>
                 <Results score={score} />
               </div>
             </>
