@@ -25,3 +25,19 @@ yarn.lock
 
 # Production build artifacts
 dist/
+
+# ----------------------------------------------------------------
+# ----------------------------------------------------------------
+# ----------------------------------------------------------------
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+
+# Distribution / packaging
+.Python
+build/
+dist/
+
+.env
