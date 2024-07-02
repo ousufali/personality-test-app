@@ -17,6 +17,7 @@ const AssessmentDescription: React.FC<AssessmentDescriptionProps> = ({ assessmen
     const startTestHandler = async () => {
         setShowLoader(true)
         const is_question_fetched = await startTestCallback()
+        // console.log("is_question_fetched:   ", is_question_fetched)
         if (!is_question_fetched) {
             setNotification({ message: 'Error fetching questions', type: 'error' })
             setTimeout(() => {

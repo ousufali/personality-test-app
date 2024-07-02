@@ -16,13 +16,13 @@ const Results: FC<ResultsProps> = ({ score }) => {
                     score > EXTROVERT_BOUNDRY ?
                         <>
                             <img src="/extrovert.jpg" alt="Image" className="resultsImage" />
-                            <p className='resultsText'>{"You are extrovert".toLocaleUpperCase()}</p>
+                            <p title="Don't worry this result is not real." className='resultsText'>{"You are extrovert".toLocaleUpperCase()}</p>
                         </>
                         :
                         <>
 
                             <img src="/introvert.jpg" alt="Image" className="resultsImage" />
-                            <p className="resultsText">{"You are introvert".toLocaleUpperCase()}</p>
+                            <p title="Don't worry this result is not real." className="resultsText">{"You are introvert".toLocaleUpperCase()}</p>
                         </>
                 }
 

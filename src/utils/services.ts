@@ -8,7 +8,7 @@ export const getAssessments = async () => {
         if (response.status === 200) {
             results = response.data;
         }
-        console.log("response: ", response);
+        // console.log("response: ", response);
     } catch (error) {
         console.error(error);
     }
@@ -28,7 +28,7 @@ export const getAssessmentQuestions = async (data: GetAssessmentQuestions) => {
         if (response.status === 200) {
             results = response.data.map((item: object) => { return { ...item, "isAnswered": false, "selectedOption": -1 } });
         }
-        console.log("response: ", response);
+        // console.log("response: ", response);
     } catch (error) {
         console.error(error);
     }
@@ -38,11 +38,11 @@ export const getAssessmentQuestions = async (data: GetAssessmentQuestions) => {
 
 
 interface GetScoreData {
-    assesmentNumber: number,
+    assessmentNumber: number,
     answerSheet: Array<{ questionNumber: number, selectedOption: number }>
 }
 
-export const getScore = async (data: GetScoreData) => {
+export const getAssessmentScore = async (data: GetScoreData) => {
     var result = undefined
     try {
         const response = await axios.post(`${config.EXAM_API_URI}/get/score`, data);

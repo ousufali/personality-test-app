@@ -1,5 +1,7 @@
 import './App.css'
 import React, { useState, useEffect } from 'react'
+import { Routes, Route, useNavigate, useLocation, Navigate } from 'react-router-dom';
+
 
 import AppHeader from '../AppHeader'
 
@@ -10,45 +12,50 @@ import TestSection from '../TestSection'
 import AssessmentDescription from '../AssessmentDescription'
 
 import Results from '../Results'
+import WithQuestionsValidation from '../HelperComponents/WithQuestionsValidation'
 
 import { async_sleep } from '../../utils'
-import { getAssessments, getAssessmentQuestions } from '../../utils/services'
+import { getAssessments, getAssessmentQuestions, getAssessmentScore } from '../../utils/services'
 import { AssessmentListing, Question } from '../../utils/models'
 
 
+
 const App: React.FC = () => {
+  const navigate = useNavigate();
+  const location = useLocation()
+  // console.log("location", location.pathname)
   const [assessments, setAssessments] = useState(Array<AssessmentListing>)
   const [questions, setQuestions] = useState(Array<Question>)
 
-  const [page, setPage] = useState(0)
   const [selectedTest, setSelectedTest] = useState(0)
   const [selectedQuestion, setSelectedQuestion] = useState(0)
 
   const [score, setScore] = useState(-1)
+  const [isDataFetched, setIsDataFetched] = useState(false)
 
 
-  console.log("questions: ", questions)
+  useEffect(() => {
 
+  }, [selectedTest])
 
   useEffect(() => {
     const fetchAssessments = async () => {
       const data = await getAssessments()
       setAssessments(data)
+      setIsDataFetched(true)
     }
     fetchAssessments()
 
   }, [])
 
-
+  // console.log(isDataFetched, "isDataFetched: ",)
 
   const startTest = async () => {
-    // start test here....
-    // console.log("start test ", selectedTest)
     const data = await getAssessmentQuestions({ assessmentNumber: selectedTest })
-    console.log("data: ", data)
+    // console.log("data: ", data)
     if (data) {
       setQuestions(data)
-      setPage(1)
+      navigate(`/assessment/${selectedTest}`)
       return true
     } else {
       await async_sleep(1500)
@@ -56,7 +63,7 @@ const App: React.FC = () => {
     }
   }
 
-  const updateQuestionAnswer = (selectedQuestion: number, optionIndex: number) => {
+  const updateQuestionAnswer = async (selectedQuestion: number, optionIndex: number) => {
     setQuestions(current_state => {
       const newQuestions = [...current_state]
       newQuestions[selectedQuestion].selectedOption = optionIndex
@@ -68,40 +75,82 @@ const App: React.FC = () => {
   const changeSelectedQuestion = (valueChanged: number) => {
     setSelectedQuestion(current_state => current_state + valueChanged)
   }
+
   const updateSelectedQuestion = (valueChanged: number) => {
     setSelectedQuestion(valueChanged)
   }
 
+  const calculateScore = async () => {
+    // console.log("questions: ", questions)
+
+    const request_data = {
+      assessmentNumber: selectedTest,
+      answerSheet: questions.map((question, index) => ({ questionNumber: index, selectedOption: question.selectedOption }))
+    }
+    const calculated_score = await getAssessmentScore(request_data)
+    console.log("calculated_score: ", calculated_score)
+    if (calculated_score) {
+      setScore(calculated_score)
+      navigate("assessments/results")
+    } else {
+      console.log("error in calculating score")
+    }
+    // setScore(score)
+  }
+
 
   return (
+
     <div id='App'>
 
       <div id='Header'>
         <AppHeader />
       </div>
 
-      <div id='Aside'>
-        {
-          page === 0 ?
-            <Assessments assessments={assessments} selectedTest={selectedTest} setSelectedTest={setSelectedTest} />
+      <Routes>
+        <Route path="/" element={
+          <>
+            <div id='Aside'>
+              <Assessments assessments={assessments} selectedTest={selectedTest} setSelectedTest={setSelectedTest} />
+            </div>
+            <div id='Main'>
+              <AssessmentDescription assessment={assessments[selectedTest]} startTestCallback={startTest} />
+            </div>
+          </>
+        } />
 
-            : <QuestionsListing questions={questions} headingName='Questions' selectedQuestion={selectedQuestion} updateSelectedQuestion={updateSelectedQuestion} />
+        <Route path="/assessment/:selectedTestId" element={
+          <WithQuestionsValidation questions={questions}>
+            <>
+              <div id='Aside'>
+                <QuestionsListing questions={questions} headingName='Questions' selectedQuestion={selectedQuestion} updateSelectedQuestion={updateSelectedQuestion} />
+              </div>
+              <div id='Main'>
+                <TestSection selectedQuestion={selectedQuestion} questions={questions} updateQuestionAnswer={updateQuestionAnswer} changeSelectedQuestion={changeSelectedQuestion} calculateScore={calculateScore} />
+              </div>
+            </>
+          </WithQuestionsValidation>
+        } />
 
-        }
-      </div>
+        <Route path="assessments/results" element={
+          <WithQuestionsValidation questions={questions}>
+            <>
+              <div id='Aside' onClick={() => navigate("/")}>
+                <Assessments assessments={assessments} selectedTest={selectedTest} setSelectedTest={setSelectedTest} />
+              </div>
 
-      <div id='Main'>
-        {
-          page === 0 ?
-            <AssessmentDescription assessment={assessments[selectedTest]} startTestCallback={startTest} />
-            : page === 1 ? <TestSection selectedQuestion={selectedQuestion} questions={questions} updateQuestionAnswer={updateQuestionAnswer} changeSelectedQuestion={changeSelectedQuestion} /> :
-              <Results score={score} />
-        }
-      </div>
+              <div id='Main'>
+                <Results score={score} />
+              </div>
+            </>
+          </WithQuestionsValidation>
+        } />
 
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
 
+    </div >
 
-    </div>
   )
 }
 
