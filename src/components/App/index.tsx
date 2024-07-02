@@ -51,6 +51,7 @@ const App: React.FC = () => {
     // console.log("data: ", data)
     if (data) {
       setQuestions(data)
+      setSelectedQuestion(0)
       navigate(`/assessment/${selectedTest}`)
       return true
     } else {

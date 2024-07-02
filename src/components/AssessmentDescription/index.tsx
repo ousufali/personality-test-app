@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Loader from '../HelperComponents/Loader';
 
 import { AssessmentListing } from '../../utils/models';
+import { async_sleep } from '../../utils';
 
 interface AssessmentDescriptionProps {
     assessment: AssessmentListing
@@ -16,6 +17,7 @@ const AssessmentDescription: React.FC<AssessmentDescriptionProps> = ({ assessmen
 
     const startTestHandler = async () => {
         setShowLoader(true)
+        await async_sleep(1500) // dummy sleep to show loader for 2 seconds
         const is_question_fetched = await startTestCallback()
         // console.log("is_question_fetched:   ", is_question_fetched)
         if (!is_question_fetched) {
