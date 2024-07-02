@@ -40,7 +40,7 @@ describe('Assessment start test', () => {
         const buttonElement = screen.getByTestId('start-assessment-button');
         expect(buttonElement).toBeInTheDocument();
         fireEvent.click(buttonElement);
-        
+
         // screen.debug();
         await waitFor(() => {
             expect(screen.getByText(/Response Sheet/i)).toBeInTheDocument();
@@ -48,4 +48,28 @@ describe('Assessment start test', () => {
 
         });
     });
+
+    test('Clicking button with class name', async () => {
+        render(<App />, { wrapper: MemoryRouter });
+        const buttonElement = screen.getByTestId('start-assessment-button');
+        expect(buttonElement).toBeInTheDocument();
+        fireEvent.click(buttonElement);
+
+        await waitFor(() => {
+            const nextButtonElement = document.querySelector('.action-button-next');
+            expect(nextButtonElement).toBeInTheDocument();
+            if (nextButtonElement) {
+                fireEvent.click(nextButtonElement);
+            }
+        });
+        await waitFor(() => {
+            const previousButtonElement = document.querySelector('.action-button-previous');
+            expect(previousButtonElement).toBeInTheDocument();
+            if (previousButtonElement) {
+                fireEvent.click(previousButtonElement);
+            }
+        });
+
+    });
+
 });
