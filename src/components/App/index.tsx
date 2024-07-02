@@ -1,6 +1,6 @@
 import './App.css'
 import React, { useState, useEffect } from 'react'
-import { Routes, Route, useNavigate, useLocation, Navigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 
 
 import AppHeader from '../AppHeader'
@@ -22,7 +22,6 @@ import { AssessmentListing, Question } from '../../utils/models'
 
 const App: React.FC = () => {
   const navigate = useNavigate();
-  const location = useLocation()
   // console.log("location", location.pathname)
   const [assessments, setAssessments] = useState(Array<AssessmentListing>)
   const [questions, setQuestions] = useState(Array<Question>)
@@ -31,8 +30,6 @@ const App: React.FC = () => {
   const [selectedQuestion, setSelectedQuestion] = useState(0)
 
   const [score, setScore] = useState(-1)
-  const [isDataFetched, setIsDataFetched] = useState(false)
-
 
   useEffect(() => {
 
@@ -42,7 +39,6 @@ const App: React.FC = () => {
     const fetchAssessments = async () => {
       const data = await getAssessments()
       setAssessments(data)
-      setIsDataFetched(true)
     }
     fetchAssessments()
 

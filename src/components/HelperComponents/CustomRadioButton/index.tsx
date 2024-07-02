@@ -1,5 +1,5 @@
 import './CustomRadioButton.css';
-import React, { useState } from 'react';
+import React from 'react';
 
 interface CustomRadioButtonProps {
     text: string

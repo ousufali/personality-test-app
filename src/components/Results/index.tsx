@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import './Results.css'; // Import the CSS file
+import { FC } from 'react';
+import './Results.css';
 
 import { EXTROVERT_BOUNDRY } from '../../utils/constant';
 

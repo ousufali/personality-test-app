@@ -1,5 +1,5 @@
 import "./QuestionList.css"
-import React, { useState } from "react"
+import React from "react"
 
 import { Question } from "../../utils/models"
 
